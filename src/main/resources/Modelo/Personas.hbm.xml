@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13-mar-2016 17:18:55 by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="Modelo.Personas" table="personas" catalog="pruebahib">
+        <id name="idPersonas" type="int">
+            <column name="idPersonas" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombrePersonas" type="string">
+            <column name="nombrePersonas" length="20" />
+        </property>
+        <property name="apellidoPersonas" type="string">
+            <column name="apellidoPersonas" length="20" />
+        </property>
+        <property name="mailPersonas" type="string">
+            <column name="mailPersonas" length="45" />
+        </property>
+        <set name="tareases" table="personas_tienen_tareas" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="idPersonas" not-null="true" />
+            </key>
+            <many-to-many entity-name="Modelo.Tareas">
+                <column name="idTareas" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>
